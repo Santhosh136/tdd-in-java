@@ -1,43 +1,49 @@
 package test;
 
 import main.FizzBuzz;
-import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.*;
+
+@DisplayName("Test FizzBuzz class")
 public class FizzBuzzTest {
 
+    @DisplayName("Test instance is not null")
     @Test
     public void shouldReturnInstance() {
         FizzBuzz fizzBuzz = new FizzBuzz();
-        Assertions.assertNotNull(fizzBuzz);
+        assertNotNull(fizzBuzz, "Instance should not be null");
     }
 
     @Test
     public void shouldReturnFizzForMultiplesOfThree() {
         FizzBuzz fizzBuzz = new FizzBuzz();
         String result = fizzBuzz.test(9);
-        Assertions.assertEquals("Fizz", result);
+        assertEquals("Fizz", result, "Fizz should be returned");
     }
 
     @Test
     public void shouldReturnBuzzForMultiplesOfFive() {
         FizzBuzz fizzBuzz = new FizzBuzz();
-        String result = fizzBuzz.test(20);
-        Assertions.assertEquals("Buzz", result);
+        String expected = "Buzz";
+        int input = 20;
+        String result = fizzBuzz.test(input);
+        assertEquals(expected, result, () -> expected + " should be returned for input " + input);
     }
 
     @Test
     public void shouldReturnFizzBuzzForBothMultiplesOfThreeAndFive() {
         FizzBuzz fizzBuzz = new FizzBuzz();
         String result = fizzBuzz.test(15);
-        Assertions.assertEquals("FizzBuzz", result);
+        assertEquals("FizzBuzz", result, "FizzBuzz should be returned");
     }
 
     @Test
     public void shouldReturnNumberIfNotMultiplesOfThreeOrFive() {
         FizzBuzz fizzBuzz = new FizzBuzz();
         String result = fizzBuzz.test(23);
-        Assertions.assertEquals("23", result);
+        assertEquals("23", result, "Number should be returned");
 
     }
 }
